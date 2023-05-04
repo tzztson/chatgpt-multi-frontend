@@ -139,8 +139,9 @@ const ChatRoom = () => {
                     </div>
                   )}
                   <div className={`messages ${item.from === user.user_id ? 'bg-forth' : 'bg-second'}`}>
+                    <span className='inline'>{`[${item.first_name.slice(0, 1).toUpperCase()}] : `}</span>
                     {item.message.map((ele: string, ind2: number) => {
-                      return <p key={ind1 + ind2}>{ele}</p>;
+                      return <p className='inline' key={ind1 + ind2}>{ele}</p>;
                     })}
                   </div>
                 </div>
