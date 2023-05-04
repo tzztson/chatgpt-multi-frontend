@@ -5,6 +5,8 @@ import useStore from '../../useStore';
 import { getUserInfo } from '../../utils';
 import { MSGTypeInterface } from '../../type';
 import AIImg from '../../assets/images/openai.png';
+import { postRequest } from '../../service';
+import { toast } from '../../components/Toast';
 
 const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
@@ -16,6 +18,7 @@ const ChatRoom = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState('');
   const [allMsg, setAllMsg] = useState<MSGTypeInterface[]>([]);
+  const [openTools, setOpenTools] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({
@@ -55,6 +58,17 @@ const ChatRoom = () => {
     setIsLoading(false);
   };
 
+  const removeHistory = async () => {
+    postRequest('/clearHistory', { email: user.email }).then((res: any) => {
+      if (res.status) {
+        toast.success("Successfully remove your chat histories");
+        setOpenTools(false);
+      } else {
+        toast.error(res.message);
+      }
+    })
+  }
+
   useEffect(() => {
     socket.on('connect', async () => {
       const data = {
@@ -92,6 +106,19 @@ const ChatRoom = () => {
         <div className="chatroom-element-info">
           <h4>ChatGPT</h4>
           <p>bot</p>
+        </div>
+        <div className='chatroom-right'>
+          <div className='chatroom-tool' onClick={() => { setOpenTools(!openTools) }}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          {openTools &&
+          <div className='chatroom-tool-modal'>
+            <div className='item' onClick={()=>{removeHistory()}}>
+              Clear My History
+            </div>
+          </div>}
         </div>
       </div>
       <div className="chatroom-body">
