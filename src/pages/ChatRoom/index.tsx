@@ -108,7 +108,7 @@ const ChatRoom = () => {
           <p>bot</p>
         </div>
         <div className='chatroom-right'>
-          <div className='chatroom-tool' onClick={() => { setOpenTools(!openTools) }}>
+          <div className={`chatroom-tool ${openTools?"active":""}`} onClick={() => { setOpenTools(!openTools) }}>
             <span></span>
             <span></span>
             <span></span>

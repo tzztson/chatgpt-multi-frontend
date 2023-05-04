@@ -19,19 +19,24 @@
       .chatroom-tool{
         @apply flex flex-col gap-[5px] cursor-pointer w-40 h-40 rounded-full bg-transparent justify-center items-center;
   
-        &:hover{
-          @apply bg-[rgba(43,82,120,1)];
-        }
         span{
-          @apply bg-white rounded-full block w-5 h-5;
+          @apply bg-[#6c7883] rounded-full block w-5 h-5;
+        }
+        &:hover{
+          span{
+            @apply bg-[#98a6b3];
+          }
+        }
+        &.active{
+          @apply bg-[#334150];
         }
       }
       .chatroom-tool-modal{
-        @apply w-200 flex flex-col text-[white] absolute bg-[rgba(43,82,120,1)] right-0 top-[40px] rounded-md text-center;
+        @apply w-200 flex flex-col text-[white] absolute bg-[#17212b] right-0 top-[50px] rounded-md text-center shadow-[0_1px_1px_2px_rgba(3,3,3,0.1)];
         .item{
           @apply cursor-pointer rounded-md p-5;
           &:hover{
-            @apply bg-[#244769];
+            @apply bg-[#1d2733];
           }
         }
       }
