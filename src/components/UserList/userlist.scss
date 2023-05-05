@@ -5,10 +5,10 @@
 
   @media (max-width:1000px) {
     width: 0px;
+    position: absolute;
 
     &.show {
       width: 350px !important;
-      position: absolute;
       top: 0;
       left: 71px;
       z-index: 10;
