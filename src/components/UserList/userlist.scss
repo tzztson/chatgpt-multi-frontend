@@ -1,4 +1,18 @@
 .user-list {
   @apply w-[20%] bg-second border-r-[1px] border-primary shadow-md;
-  width: calc((100% - 80px) * 0.2);
+  width: 350px;
+  transition: all .5s;
+
+  @media (max-width:1000px) {
+    width: 0px;
+
+    &.show {
+      width: 350px !important;
+      position: absolute;
+      top: 0;
+      left: 71px;
+      z-index: 10;
+      height: 100%;
+    }
+  }
 }
