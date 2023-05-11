@@ -14,7 +14,7 @@ export const emailValidator = (mail: string) => {
     return { status: false, msg: 'Invalid email type!' };
   }
 
-  return { status: true, msg: '' };
+  return { status: true, msg: 'Good' };
 };
 
 export const strongPasswordValidator = (password: string) => {
@@ -27,30 +27,31 @@ export const strongPasswordValidator = (password: string) => {
   }
 
   if (!password.match(/[A-Z]/)) {
-    return { status: false, msg: 'A letter in upper case!' };
+    return { status: false, msg: 'Include At least one UpperCase!' };
   }
 
   if (!password.match(/[0-9]/)) {
-    return { status: false, msg: 'A numerals (0-9)!' };
+    return { status: false, msg: 'Include At least one Number!' };
   }
 
   if (!password.match(/[!@#$%^&*()]/)) {
-    return { status: false, msg: 'A letter special character!' };
+    return { status: false, msg: 'Include At least one Special!' };
   }
 
   return { status: true, msg: 'Password is strong!' };
 };
 
-export const checkValidator = (d: any, ele: string, value: string, label: string) => {
+
+export const checkValidator = (d: any, item: string, value: string, label: string) => {
   return {
     ...d,
-    [ele]: {
-      ...d[ele],
+    [item]: {
+      ...d[item],
       message: !value
         ? `${label} is required!`
-        : ele === 'email' && !emailValidator(value)
+        : item === 'email' && !emailValidator(value)
         ? 'Invalid email type!'
-        : ele === 'password' && strongPasswordValidator(value).msg
+        : item === 'password' && strongPasswordValidator(value).msg
     }
   };
 };
